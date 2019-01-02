@@ -49,31 +49,31 @@ plotMDS(normData, group = groupFactor)
 dev.off()
 
 # Write Dam abundances
-#writeAssay(normData, file = "vignette/Dam1.bigWig", sample = 1)
-#writeAssay(normData, file = "vignette/Dam2.bigWig", sample = 2)
+writeAssay(normData, file = "vignette/Dam1.bigWig", sample = 1)
+writeAssay(normData, file = "vignette/Dam2.bigWig", sample = 2)
 
 # Write Dam-fusion abundances
-#writeAssay(normData, file = "vignette/Fusion1.bigWig", sample = 3)
-#writeAssay(normData, file = "vignette/Fusion2.bigWig", sample = 4)
+writeAssay(normData, file = "vignette/Fusion1.bigWig", sample = 3)
+writeAssay(normData, file = "vignette/Fusion2.bigWig", sample = 4)
 
 # Write Dam-fusion / Dam abundances
-#writeRatio(normData, file = "vignette/Ratio1.bigWig", contrast = c(3, 1))
-#writeRatio(normData, file = "vignette/Ratio2.bigWig", contrast = c(4, 2))
+writeRatio(normData, file = "vignette/Ratio1.bigWig", contrast = c(3, 1))
+writeRatio(normData, file = "vignette/Ratio2.bigWig", contrast = c(4, 2))
 
 # Call DNA binding sites
 bindSite <- callPeaks(normData, alpha = 0.05, lfc = log2(1.1))
-#writeBroad(bindSite, "vignette/bindSite.broadPeak")
+writeBroad(bindSite, "vignette/bindSite.broadPeak")
 
 # Compute background methylation
 inputData <- computeInput(normData)
 
 # Export Input abundances
-#writeAssay(inputData, "vignette/Input1.bigWig", sample = 1)
-#writeAssay(inputData, "vignette/Input2.bigWig", sample = 2)
+writeAssay(inputData, "vignette/Input1.bigWig", sample = 1)
+writeAssay(inputData, "vignette/Input2.bigWig", sample = 2)
 
 # Call DNA accessibility sites
 openSite <- callPeaks(inputData, alpha = 0.05, lfc = log2(1.2))
-#writeBroad(openSite, "vignette/openSite.broadPeak")
+writeBroad(openSite, "vignette/openSite.broadPeak")
 
 # Annotate peaks
 bindSite <- annotatePeaks(bindSite, genome = "mm10")
