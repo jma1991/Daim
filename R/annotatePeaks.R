@@ -9,7 +9,7 @@
 annotatePeaks <- function(ranges, genome) {
 
     # Import genome information
-    genomeInfo <- Daim:::genomeInfo
+    genomeInfo <- Daim::genomeInfo
 
     # Subset genome information
     genomeName <- match.arg(genome, choices = genomeInfo$assemblyName)
