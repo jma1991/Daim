@@ -753,7 +753,6 @@ If you use Daim in your research, please cite the following article:
 ## References
 
 1. https://emea.illumina.com/science/sequencing-method-explorer/kits-and-arrays/damid.html
-2. https://upload.wikimedia.org/wikipedia/en/c/cf/Daim-Wrapper-Small.jpg
 
 ## License
 
