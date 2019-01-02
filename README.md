@@ -3,8 +3,7 @@
 A Bioconductor package for analysis of DamID-seq data
 
 [![Travis build status](https://travis-ci.org/jma1991/Daim.svg?branch=master)](https://travis-ci.org/jma1991/Daim)
-![GitHub package version](https://img.shields.io/github/package-json/v/Daim/shields.svg)
-![GitHub last commit](https://img.shields.io/github/last-commit/jma1991/skia.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/jma1991/Daim.svg)
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg)
 ![Github All Releases](https://img.shields.io/github/downloads/jma1991/Daim/total.svg)
 
@@ -596,13 +595,27 @@ The *annotatePeaks* function can be used to assign each peak to its closest gene
 
 ```r
 # Annotate peak calls
-> bindSites <- annotatePeaks(bindSites, genome = "mm10")
+> bindSite <- annotatePeaks(bindSite, genome = "mm10")
 ```
 The original GRanges object is returned with additional metadata columns:
 
 ```r
-
-
+GRanges object with 49985 ranges and 12 metadata columns:
+          seqnames            ranges strand |           baseMean           baseMean0          baseMean1    log2FoldChange                 pval                 padj          entrezTSS   symbolTSS distanceTSS genomicFeature
+             <Rle>         <IRanges>  <Rle> |          <numeric>           <numeric>          <numeric>         <numeric>            <numeric>            <numeric>        <character> <character>   <integer>    <character>
+      [1]     chr1   3058182-3058878      * | -0.171971778026624  -0.729953265260265  0.386009709207016  1.11596297446728   0.0156361204448793   0.0377156172207029 ENSMUSG00000090025        <NA>        2949     Intergenic
+      [2]     chr1   3062430-3063077      * |   0.53524574813699  -0.183891572569733   1.25438306884371  1.43827464141345 0.000488440482804998  0.00367506643847225 ENSMUSG00000090025        <NA>        7197     Intergenic
+      [3]     chr1   3150889-3153223      * |  0.225906790969608  -0.343100247811443  0.794913829750659   1.1380140775621 0.000584792752725416  0.00502775336278158 ENSMUSG00000064842        <NA>       47873     Intergenic
+      [4]     chr1   3154291-3156059      * |  0.526688692390369 -0.0247433151819471   1.07812069996269  1.10286401514463  0.00549233993476922   0.0201307560357678 ENSMUSG00000064842        <NA>       51275     Intergenic
+      [5]     chr1   3384264-3387202      * |     -1.40455023401   -2.30024761691275 -0.508852851107252  1.79139476580549  0.00499622417935201   0.0123957837965156 ENSMUSG00000089699        <NA>      -79284         Intron
+      ...      ...               ...    ... .                ...                 ...                ...               ...                  ...                  ...                ...         ...         ...            ...
+  [49981]     chrY 90763184-90771549      * | -0.172190230388352  -0.755264014957346  0.410883554180642  1.16614756913799 5.79557220978728e-05   0.0007462992978076 ENSMUSG00000095134        <NA>        6527     Intergenic
+  [49982]     chrY 90773271-90781418      * | -0.385432143019946  -0.860830775620523 0.0899664895806302 0.950797265201153 0.000443695717718682   0.0033589432198166 ENSMUSG00000096768       Erdr1       -3219     Intergenic
+  [49983]     chrY 90782407-90808312      * |   1.67793755177809    1.26575663323503   2.09011847032116 0.824361837086134 5.01011088418489e-09 1.82964194497186e-06 ENSMUSG00000096768       Erdr1           0         Intron
+  [49984]     chrY 90809315-90815233      * |   1.89199574149297    1.63193674991836   2.15205473306759 0.520117983149235 1.45726306559429e-05 0.000356180247283381 ENSMUSG00000096768       Erdr1       22729         Intron
+  [49985]     chrY 90823995-90828869      * | -0.276673501567332   -1.35280764260506  0.799460639470396  2.15226828207546 0.000861035724926579  0.00447527655754312 ENSMUSG00000096850        <NA>        9308     Intergenic
+  -------
+  seqinfo: 21 sequences from mm10 genome
 ```
 
 The metadata columns include:
@@ -616,19 +629,19 @@ A number of plotting functions can then be used to explore the distribution of p
 
 ```r
 # Binned by absolute distance to TSS
-> plotTSS(bindSItes, dist = "absolute")
+> plotTSS(bindSite, dist = "absolute")
 ```
 ![plotTSS-abs](vignette/plotTSS-abs.png)
 
 ```r
 # Binned by relative distance to TSS
-> plotTSS(bindSites, dist = "relative")
+> plotTSS(bindSite, dist = "relative")
 ```
 ![plotTSS-rel](vignette/plotTSS-rel.png)
 
 ```r
 # Binned by genomic feature
-plotFeature(bindSites)
+plotFeature(bindSite)
 ````
 ![plotFeature](vignette/plotFeature.png)
 
@@ -638,16 +651,31 @@ The peaks identified from DamID-seq data tend to be large (>1Kb) and the motif i
 
 ```r
 # Import PWM data from JASPAR
-> motifPWM <- read.table("MA0142.1.txt", skip = 1)
+> motifPWM <- as.matrix(read.table("MA0142.1.pfm", skip = 1))
 > rownames(motifPWM) <- c("A", "C", "G", "T")
 
 # Search for the MA0142.1 motif
-> bindSites <- searchMotif(motif = motifPWM, ranges = bindSites, genome = BSgenome.Dmelanogaster.UCSC.dm6)
+> bindSite <- searchMotif(BSgenome.Mmusculus.UCSC.mm10, ranges = bindSite, matrix = motifPWM)
 ```
 If any high scoring matches are found, two additional metadata columns are appended to the GRanges object:
 
 ```r
-
+GRanges object with 49985 ranges and 12 metadata columns:
+          seqnames            ranges strand |           baseMean           baseMean0          baseMean1    log2FoldChange                 pval                 padj          entrezTSS   symbolTSS distanceTSS genomicFeature motifCenter motifScore
+             <Rle>         <IRanges>  <Rle> |          <numeric>           <numeric>          <numeric>         <numeric>            <numeric>            <numeric>        <character> <character>   <integer>    <character>   <numeric>  <numeric>
+      [1]     chr1   3058182-3058878      * | -0.171971778026624  -0.729953265260265  0.386009709207016  1.11596297446728   0.0156361204448793   0.0377156172207029 ENSMUSG00000090025        <NA>        2949     Intergenic     3058738      10688
+      [2]     chr1   3062430-3063077      * |   0.53524574813699  -0.183891572569733   1.25438306884371  1.43827464141345 0.000488440482804998  0.00367506643847225 ENSMUSG00000090025        <NA>        7197     Intergenic     3062938      10332
+      [3]     chr1   3150889-3153223      * |  0.225906790969608  -0.343100247811443  0.794913829750659   1.1380140775621 0.000584792752725416  0.00502775336278158 ENSMUSG00000064842        <NA>       47873     Intergenic     3152643      12871
+      [4]     chr1   3154291-3156059      * |  0.526688692390369 -0.0247433151819471   1.07812069996269  1.10286401514463  0.00549233993476922   0.0201307560357678 ENSMUSG00000064842        <NA>       51275     Intergenic     3155845      10649
+      [5]     chr1   3384264-3387202      * |     -1.40455023401   -2.30024761691275 -0.508852851107252  1.79139476580549  0.00499622417935201   0.0123957837965156 ENSMUSG00000089699        <NA>      -79284         Intron     3385461      11683
+      ...      ...               ...    ... .                ...                 ...                ...               ...                  ...                  ...                ...         ...         ...            ...         ...        ...
+  [49981]     chrY 90763184-90771549      * | -0.172190230388352  -0.755264014957346  0.410883554180642  1.16614756913799 5.79557220978728e-05   0.0007462992978076 ENSMUSG00000095134        <NA>        6527     Intergenic    90764284      11465
+  [49982]     chrY 90773271-90781418      * | -0.385432143019946  -0.860830775620523 0.0899664895806302 0.950797265201153 0.000443695717718682   0.0033589432198166 ENSMUSG00000096768       Erdr1       -3219     Intergenic    90780511      11050
+  [49983]     chrY 90782407-90808312      * |   1.67793755177809    1.26575663323503   2.09011847032116 0.824361837086134 5.01011088418489e-09 1.82964194497186e-06 ENSMUSG00000096768       Erdr1           0         Intron    90794725      11799
+  [49984]     chrY 90809315-90815233      * |   1.89199574149297    1.63193674991836   2.15205473306759 0.520117983149235 1.45726306559429e-05 0.000356180247283381 ENSMUSG00000096768       Erdr1       22729         Intron    90809837      11989
+  [49985]     chrY 90823995-90828869      * | -0.276673501567332   -1.35280764260506  0.799460639470396  2.15226828207546 0.000861035724926579  0.00447527655754312 ENSMUSG00000096850        <NA>        9308     Intergenic    90825611      10238
+  -------
+  seqinfo: 21 sequences from mm10 genome
 ```
 The metadata columns include:
 
@@ -657,13 +685,28 @@ The metadata columns include:
 To increase the resolution of peaks identified from DamID-seq data, the peak regions can then be centred according to the position of the motif and resized to a constant width:
 
 ```r
-bindSitesCenter <- centerMotif(bindSites, size = 500)
+bindSite <- centerMotif(bindSite, size = 500)
 ```
 
 A GRanges object with the centered and reszied genomic ranges is returned.
 
 ```r
-
+GRanges object with 49985 ranges and 12 metadata columns:
+          seqnames            ranges strand |           baseMean           baseMean0          baseMean1    log2FoldChange                 pval                 padj          entrezTSS   symbolTSS distanceTSS genomicFeature motifCenter motifScore
+             <Rle>         <IRanges>  <Rle> |          <numeric>           <numeric>          <numeric>         <numeric>            <numeric>            <numeric>        <character> <character>   <integer>    <character>   <numeric>  <numeric>
+      [1]     chr1   3058738-3059237      * | -0.171971778026624  -0.729953265260265  0.386009709207016  1.11596297446728   0.0156361204448793   0.0377156172207029 ENSMUSG00000090025        <NA>        2949     Intergenic     3058738      10688
+      [2]     chr1   3062938-3063437      * |   0.53524574813699  -0.183891572569733   1.25438306884371  1.43827464141345 0.000488440482804998  0.00367506643847225 ENSMUSG00000090025        <NA>        7197     Intergenic     3062938      10332
+      [3]     chr1   3152643-3153142      * |  0.225906790969608  -0.343100247811443  0.794913829750659   1.1380140775621 0.000584792752725416  0.00502775336278158 ENSMUSG00000064842        <NA>       47873     Intergenic     3152643      12871
+      [4]     chr1   3155845-3156344      * |  0.526688692390369 -0.0247433151819471   1.07812069996269  1.10286401514463  0.00549233993476922   0.0201307560357678 ENSMUSG00000064842        <NA>       51275     Intergenic     3155845      10649
+      [5]     chr1   3385461-3385960      * |     -1.40455023401   -2.30024761691275 -0.508852851107252  1.79139476580549  0.00499622417935201   0.0123957837965156 ENSMUSG00000089699        <NA>      -79284         Intron     3385461      11683
+      ...      ...               ...    ... .                ...                 ...                ...               ...                  ...                  ...                ...         ...         ...            ...         ...        ...
+  [49981]     chrY 90764284-90764783      * | -0.172190230388352  -0.755264014957346  0.410883554180642  1.16614756913799 5.79557220978728e-05   0.0007462992978076 ENSMUSG00000095134        <NA>        6527     Intergenic    90764284      11465
+  [49982]     chrY 90780511-90781010      * | -0.385432143019946  -0.860830775620523 0.0899664895806302 0.950797265201153 0.000443695717718682   0.0033589432198166 ENSMUSG00000096768       Erdr1       -3219     Intergenic    90780511      11050
+  [49983]     chrY 90794725-90795224      * |   1.67793755177809    1.26575663323503   2.09011847032116 0.824361837086134 5.01011088418489e-09 1.82964194497186e-06 ENSMUSG00000096768       Erdr1           0         Intron    90794725      11799
+  [49984]     chrY 90809837-90810336      * |   1.89199574149297    1.63193674991836   2.15205473306759 0.520117983149235 1.45726306559429e-05 0.000356180247283381 ENSMUSG00000096768       Erdr1       22729         Intron    90809837      11989
+  [49985]     chrY 90825611-90826110      * | -0.276673501567332   -1.35280764260506  0.799460639470396  2.15226828207546 0.000861035724926579  0.00447527655754312 ENSMUSG00000096850        <NA>        9308     Intergenic    90825611      10238
+  -------
+  seqinfo: 21 sequences from mm10 genome
 ```
 
 After centering the peak regions and resizing to a constant width, conventional motif analysis tools can be used and in most cases de-novo motif discovery will perform much better given the assumptions are more closely matched.
