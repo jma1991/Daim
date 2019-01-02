@@ -1,8 +1,7 @@
 Package: Daim
-Title: Analysis, Visualisation, and Interpretation of DamID-seq Experiments
+Title: A Bioconductor package for analysis of DamID-seq data
 Version: 0.1
-Authors@R: person("James", "Ashmore", email = "jma1991@icloud.com",
-                  role = c("aut", "cre"))
+Authors@R: person("James", "Ashmore", email = "jma1991@icloud.com", role = c("aut", "cre"))
 BugReports: https://github.com/jma1991/Daim/issues
 Description: More about what it does (maybe more than one line)
 Depends: R (>= 3.4.0)
