@@ -8,6 +8,8 @@ centerMotif(object, size = NULL)
 }
 \arguments{
 \item{object}{A \code{GRanges} object of peak regions.}
+
+\item{size}{Resize peak regions to given size.}
 }
 \value{
 A \code{GRanges} object of peak regions centered by motif position.

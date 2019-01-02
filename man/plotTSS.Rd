@@ -8,6 +8,8 @@ plotTSS(object, mode = c("absolute", "relative"))
 }
 \arguments{
 \item{object}{A \code{GRanges} object of annotated peak regions.}
+
+\item{mode}{Plot "absolute" or "relative" distance.}
 }
 \description{
 Plot the distance between peak regions and their putatively regulated genes.

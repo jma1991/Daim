@@ -4,7 +4,7 @@
 \alias{plotMDS}
 \title{Multidimensional Scaling}
 \usage{
-plotMDS(object, ...)
+plotMDS(object, group)
 }
 \arguments{
 \item{object}{A \code{matrix} or \code{RangedSummarizedExperiment} object.}
