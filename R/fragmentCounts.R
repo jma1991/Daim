@@ -44,7 +44,7 @@ fragmentCounts <- function(reads, fragments) {
 
     # Count reads into fragments
     annotFile <- Rsubread::createAnnotationFile(featureRanges)
-    invisible(capture.output(featureCounts <- Rsubread::featureCounts(
+    invisible(utils::capture.output(featureCounts <- Rsubread::featureCounts(
         files = reads,
         annot.ext = annotFile,
         read2pos = 5,

@@ -6,7 +6,7 @@
 #' @param group A factor specifying group colours.
 #' @return A multidimensional scaling plot on the current graphics device.
 
-plotMDS <- function(object, ...) {
+plotMDS <- function(object, group) {
 
     # Check argument missing
     if (missing(object)) {

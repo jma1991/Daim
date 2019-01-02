@@ -3,6 +3,7 @@
 #' Center peak regions by the position of the known motif.
 #'
 #' @param object A \code{GRanges} object of peak regions.
+#' @param size Resize peak regions to given size.
 #' @return A \code{GRanges} object of peak regions centered by motif position.
 #'
 

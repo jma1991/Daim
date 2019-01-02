@@ -5,19 +5,28 @@ Authors@R: person("James", "Ashmore", email = "jma1991@icloud.com",
                   role = c("aut", "cre"))
 BugReports: https://github.com/jma1991/Daim/issues
 Description: More about what it does (maybe more than one line)
-Depends: GenomicRanges, R (>= 3.4.3), SummarizedExperiment
-License: MIT
+Depends: R (>= 3.4.3)
+License: MIT + file LICENSE
 LazyData: TRUE
 Imports:
+    AnnotationDbi,
     Biobase,
+    BiocGenerics,
     Biostrings,
+    BSgenome,
     cqn,
     csaw,
+    DropletUtils,
     edgeR,
     GenomicFeatures,
+    GenomeInfoDb,
+    GenomicRanges,
+    IRanges,
     limma,
+    matrixStats,
     methods,
     qsmooth,
+    Rsamtools,
     RColorBrewer,
     Rsubread,
     rtracklayer,

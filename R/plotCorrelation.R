@@ -78,7 +78,7 @@ plotCorrelation.RangedSummarizedExperiment <- function(object, contrast) {
 
     # Define colour palette
     brewerPalette <- c("#FFFFFF", RColorBrewer::brewer.pal(n = 5, name = "Greys"))
-    colourPalette <- colorRampPalette(brewerPalette)
+    colourPalette <- grDevices::colorRampPalette(brewerPalette)
 
     # Draw plotting area
     smoothScatter(x = sideValues1,

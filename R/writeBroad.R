@@ -73,7 +73,7 @@ writeBroad.GRanges <- function(object, file = "") {
     broadFormat <- trimws(broadFormat)
 
     # Write to disk
-    write.table(
+    utils::write.table(
         x = broadFormat,
         file = filePath,
         quote = FALSE,

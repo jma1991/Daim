@@ -161,7 +161,7 @@ digestGenome.FaFile <- function(object) {
 
     # Assign a relevant genome identifier
     fastaPath <- path(fastaFile)
-    genome(indexFile) <- file_path_sans_ext(fastaPath, compression = TRUE)
+    genome(indexFile) <- tools::file_path_sans_ext(fastaPath, compression = TRUE)
 
     # Read sequence names and widths
     chromInfo <- seqinfo(indexFile)

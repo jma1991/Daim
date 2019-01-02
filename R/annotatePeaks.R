@@ -10,11 +10,11 @@ annotatePeaks <- function(ranges, genome) {
 
     # Import genome information
     genomeFile <- system.file("data", "BiocManager.csv", package = "Daim")
-    genomeInfo <- read.csv(genomeFile, stringsAsFactors = FALSE)
+    genomeInfo <- utils::read.csv(genomeFile, stringsAsFactors = FALSE)
 
     # Subset genome information
     genomeName <- match.arg(genome, choices = genomeInfo$assemblyName)
-    genomeInfo <- subset(genomeInfo, assemblyName == genomeName)
+    genomeInfo <- genomeInfo[genomeInfo$assemblyName == genomeName, ]
 
     # Attach required packages
     pkgNames <- c(genomeInfo$TxDb, genomeInfo$OrgDb)
@@ -31,7 +31,7 @@ annotatePeaks <- function(ranges, genome) {
     chromNames <- grep(matchNames, chromNames, invert = TRUE, value = TRUE)
 
     # Keep standard chromosome names
-    annPkg <- keepSeqlevels(annPkg, chromNames)
+    annPkg <- GenomeInfoDb::keepSeqlevels(annPkg, chromNames)
 
     # Annotate nearest TSS
     ranges <- annotatePeaks.nearestTSS(ranges, genomeInfo)

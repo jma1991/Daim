@@ -3,6 +3,7 @@
 #' Plot the distance between peak regions and their putatively regulated genes.
 #'
 #' @param object A \code{GRanges} object of annotated peak regions.
+#' @param mode Plot "absolute" or "relative" distance.
 
 plotTSS <- function(object, mode = c("absolute", "relative")) {
 
