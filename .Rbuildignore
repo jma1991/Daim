@@ -1,6 +1,6 @@
 ^\.travis\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-CODE_OF_CONDUCT.md
-_config.yml
-vignette
+^CODE_OF_CONDUCT.md
+^_config.yml
+^vignette
