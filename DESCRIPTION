@@ -5,7 +5,7 @@ Authors@R: person("James", "Ashmore", email = "jma1991@icloud.com",
                   role = c("aut", "cre"))
 BugReports: https://github.com/jma1991/Daim/issues
 Description: More about what it does (maybe more than one line)
-Depends: R (>= 3.4.3)
+Depends: R (>= 3.4.0)
 License: MIT + file LICENSE
 LazyData: TRUE
 Imports:
