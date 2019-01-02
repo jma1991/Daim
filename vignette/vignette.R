@@ -49,45 +49,45 @@ plotMDS(normData, group = groupFactor)
 dev.off()
 
 # Write Dam abundances
-writeAssay(normData, file = "vignette/Dam1.bigWig", sample = 1)
-writeAssay(normData, file = "vignette/Dam2.bigWig", sample = 2)
+#writeAssay(normData, file = "vignette/Dam1.bigWig", sample = 1)
+#writeAssay(normData, file = "vignette/Dam2.bigWig", sample = 2)
 
 # Write Dam-fusion abundances
-writeAssay(normData, file = "vignette/Fusion1.bigWig", sample = 3)
-writeAssay(normData, file = "vignette/Fusion2.bigWig", sample = 4)
+#writeAssay(normData, file = "vignette/Fusion1.bigWig", sample = 3)
+#writeAssay(normData, file = "vignette/Fusion2.bigWig", sample = 4)
 
 # Write Dam-fusion / Dam abundances
-writeRatio(normData, file = "vignette/Ratio1.bigWig", contrast = c(3, 1))
-writeRatio(normData, file = "vignette/Ratio2.bigWig", contrast = c(4, 2))
+#writeRatio(normData, file = "vignette/Ratio1.bigWig", contrast = c(3, 1))
+#writeRatio(normData, file = "vignette/Ratio2.bigWig", contrast = c(4, 2))
 
 # Call DNA binding sites
 bindSite <- callPeaks(normData, alpha = 0.05, lfc = log2(1.1))
-writeBroad(bindSite, "vignette/bindSite.broadPeak")
+#writeBroad(bindSite, "vignette/bindSite.broadPeak")
 
 # Compute background methylation
 inputData <- computeInput(normData)
 
 # Export Input abundances
-writeAssay(inputData, "vignette/Input1.bigWig", sample = 1)
-writeAssay(inputData, "vignette/Input2.bigWig", sample = 2)
+#writeAssay(inputData, "vignette/Input1.bigWig", sample = 1)
+#writeAssay(inputData, "vignette/Input2.bigWig", sample = 2)
 
 # Call DNA accessibility sites
 openSite <- callPeaks(inputData, alpha = 0.05, lfc = log2(1.2))
-writeBroad(openSite, "vignette/openSite.broadPeak")
+#writeBroad(openSite, "vignette/openSite.broadPeak")
 
 # Annotate peaks
-annoSite <- annotatePeaks(bindSite, genome = "mm10")
+bindSite <- annotatePeaks(bindSite, genome = "mm10")
 
 png("vignette/plotTSS-abs.png", width = 360, height = 360)
-plotTSS(annoSite, mode = "absolute")
+plotTSS(bindSite, mode = "absolute")
 dev.off()
 
 png("vignette/plotTSS-rel.png", width = 360, height = 360)
-plotTSS(annoSite, mode = "relative")
+plotTSS(bindSite, mode = "relative")
 dev.off()
 
 png("vignette/plotFeature.png", width = 360, height = 360)
-plotFeature(annoSite)
+plotFeature(bindSite)
 dev.off()
 
 # Import PWM data from JASPAR
@@ -95,6 +95,7 @@ motifPWM <- as.matrix(read.table("vignette/MA0142.1.pfm", skip = 1))
 rownames(motifPWM) <- c("A", "C", "G", "T")
 
 # Search for the MA0142.1 motif
-motifSite <- searchMotif(BSgenome.Mmusculus.UCSC.mm10, ranges = bindSite, matrix = motifPWM)
+bindSite <- searchMotif(BSgenome.Mmusculus.UCSC.mm10, ranges = bindSite, matrix = motifPWM)
 
-motifSite <- centerMotif(motifSite, size = 500)
+# Center motif
+bindSite <- centerMotif(bindSite, size = 500)
