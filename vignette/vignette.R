@@ -91,7 +91,7 @@ plotFeature(bindSite)
 dev.off()
 
 # Import PWM data from JASPAR
-motifPWM <- as.matrix(read.table("vignette/MA0142.1.pfm", skip = 1))
+motifPWM <- as.matrix(read.table("../backup/MA0142.1.pfm", skip = 1))
 rownames(motifPWM) <- c("A", "C", "G", "T")
 
 # Search for the MA0142.1 motif
