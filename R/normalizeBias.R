@@ -59,7 +59,7 @@ normalizeBias <- function(object, group) {
 normalizeBias.RangedSummarizedExperiment <- function(object, group) {
 
     # Conditional quantile normalisation
-    require("cqn")
+    requireNamespace("cqn")
     cqNorm <- cqn::cqn(assay(object, "countsData"), mcols(object)$digestByProb, mcols(object)$digestBySize, sqn = FALSE)
     cqData <- 2^(cqNorm$y + cqNorm$offset)
 
@@ -72,12 +72,10 @@ normalizeBias.RangedSummarizedExperiment <- function(object, group) {
     colData(object)$groupFactor <- group
 
     # Normalise to log2 counts per million
-    require("edgeR")
     ctSize <- colSums(ctNorm) * edgeR::calcNormFactors(ctNorm, method = "TMM", doWeighting = FALSE)
     ctData <- t(log2(t(ctNorm + 0.5)/(ctSize + 1) * 1e6))
 
     # Smooth quantile normalisation
-    require("qsmooth")
     qsNorm <- qsmooth::qsmooth(ctData, groupFactor)
     qsData <- qsmooth::qsmoothData(qsNorm)
 
