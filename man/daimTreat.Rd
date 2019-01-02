@@ -7,6 +7,17 @@
 daimTreat(fit, lfc = log2(1.2), trend = FALSE, robust = FALSE,
   winsor.tail.p = c(0.05, 0.1))
 }
+\arguments{
+\item{fit}{an MArrayLM fitted model object produced by lmFit or contrasts.fit. For ebayes only, fit can alternatively be an unclassed list produced by lm.series, gls.series or mrlm containing components coefficients, stdev.unscaled, sigma and df.residual.}
+
+\item{lfc}{the minimum log2-fold-change that is considered scientifically meaningful}
+
+\item{trend}{logical, should an intensity-trend be allowed for the prior variance? Default is that the prior variance is constant.}
+
+\item{robust}{logical, should the estimation of df.prior and var.prior be robustified against outlier sample variances?}
+
+\item{winsor.tail.p}{numeric vector of length 1 or 2, giving left and right tail proportions of x to Winsorize. Used only when robust=TRUE.}
+}
 \description{
 Computes empirical Bayes moderated-t p-values relative to a minimum meaningful fold-change threshold.
 }
