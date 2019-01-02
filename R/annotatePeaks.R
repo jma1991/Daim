@@ -10,7 +10,7 @@ annotatePeaks <- function(ranges, genome) {
 
     # Import genome information
     genomeFile <- system.file("data", "BiocManager.csv", package = "Daim")
-    genomeInfo <- utils::read.csv(genomeFile, stringsAsFactors = FALSE)
+    genomeInfo <- Daim:::genomeInfo
 
     # Subset genome information
     genomeName <- match.arg(genome, choices = genomeInfo$assemblyName)
