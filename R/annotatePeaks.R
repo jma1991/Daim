@@ -9,7 +9,6 @@
 annotatePeaks <- function(ranges, genome) {
 
     # Import genome information
-    genomeFile <- system.file("data", "BiocManager.csv", package = "Daim")
     genomeInfo <- Daim:::genomeInfo
 
     # Subset genome information
