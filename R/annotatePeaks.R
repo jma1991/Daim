@@ -170,3 +170,11 @@ annotatePeaks.overlapRef <- function(ranges, genome) {
     ranges
 
 }
+
+#' Genome Information Table
+#'
+#' @name genomeInfo
+#' @return genomeInfo data frame
+#' @docType data
+#' @export genomeInfo
+NULL
