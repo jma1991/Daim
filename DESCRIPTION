@@ -1,9 +1,9 @@
 Package: Daim
-Title: A Bioconductor package for analysis of DamID-seq data
+Title: Analysis, interpretation, and visualization of DamID-seq data
 Version: 0.1
 Authors@R: person("James", "Ashmore", email = "jma1991@icloud.com", role = c("aut", "cre"))
 BugReports: https://github.com/jma1991/Daim/issues
-Description: More about what it does (maybe more than one line)
+Description: A Bioconductor package for analysis of DamID-seq data.
 Depends: R (>= 3.4.0)
 License: MIT + file LICENSE
 LazyData: TRUE
