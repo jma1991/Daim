@@ -152,7 +152,7 @@ In order to quantify restriction fragment abundance, an annotation table of all 
 The restriction fragments are represented as genomic ranges using the GRanges class. The object also contains two metadata columns which contain the length and GC content of each restriction fragment:
 
 ```r
-# Show restriction fragments
+# Container for restriction fragments
 > resFrag
 GRanges object with 6669641 ranges and 2 metadata columns:
             seqnames            ranges strand | digestBySize         digestByProb
@@ -232,6 +232,7 @@ After restriction fragment quantification, the quality of each library can be as
 The *plotCoverage* function displays the read coverage of restriction fragments for each library, allowing the user to determine whether more sequencing is required. If the coverage curves show that very few fragments have a substantional number of reads to retain for statistical analysis, it is advisable to sequence the libraries to a greater depth:
 
 ```r
+# Plot read coverage
 > plotCoverage(rawData, group = groupFactor)
 ```
 ![plotCoverage](vignette/plotCoverage.png)
@@ -241,6 +242,7 @@ The *plotCoverage* function displays the read coverage of restriction fragments 
 The *plotComplexity* function displays the number of distinct restriction fragments for each library, allowing the user to determine whether more sequencing is required. If the complexity curves do not approach saturation at full depth, then more sequencing is required to detect all restriction fragments in the library:
 
 ```r
+# Plot fragment complexity
 > plotComplexity(rawData, group = groupFactor)
 ```
 ![plotComplexity](vignette/plotComplexity.png)
@@ -250,6 +252,7 @@ The *plotComplexity* function displays the number of distinct restriction fragme
 The *plotEnrichment* function displays a cumulative sum curve showing the fraction of reads aligned to all restriction fragments in the genome for each library, allowing the user to determine whether the Dam-fusion samples were sufficiently enriched so that they can be separated from the Dam background signal. If the area between the Dam-fusion and Dam curves is very small, this indicates that reads are equally distributed across the genome and that it might be hard to identify Dam-fusion over Dam enrichment:
 
 ```r
+# Plot sample enrichment
 > plotEnrichment(rawData, group = groupFactor)
 ```
 ![plotEnrichment](vignette/plotEnrichment.png)
@@ -454,6 +457,8 @@ The *callPeaks* function is used to identify DNA binding sites by testing for di
 The called peaks are represented as genomic ranges using the GRanges class. The object also contains a number of additional metadata columns which contain statistics for each peak region:
 
 ```r
+# Container for peak regions
+> bindSite
 GRanges object with 49985 ranges and 6 metadata columns:
           seqnames            ranges strand |           baseMean           baseMean0          baseMean1    log2FoldChange                 pval                 padj
              <Rle>         <IRanges>  <Rle> |          <numeric>           <numeric>          <numeric>         <numeric>            <numeric>            <numeric>
@@ -552,12 +557,14 @@ The *callPeaks* function can now be used to identify chromatin accessibility sit
 
 ```r
 # Identify DNA accessibility sites
-> openSites <- callPeaks(inputData, alpha = 0.05, lfc = log2(1.2))
+> openSite <- callPeaks(inputData, alpha = 0.05, lfc = log2(1.2))
 ```
 
 The *callPeaks* function again returns a GRanges object of peak calls, alongside the usual metadata columns:
 
 ```r
+# Container for peak regions
+> openSite
 GRanges object with 152591 ranges and 6 metadata columns:
            seqnames            ranges strand |           baseMean          baseMean0          baseMean1      log2FoldChange                 pval                 padj
               <Rle>         <IRanges>  <Rle> |          <numeric>          <numeric>          <numeric>           <numeric>            <numeric>            <numeric>
@@ -600,6 +607,8 @@ The *annotatePeaks* function can be used to assign each peak to its closest gene
 The original GRanges object is returned with additional metadata columns:
 
 ```r
+# Show metadata columns
+> bindSite
 GRanges object with 49985 ranges and 12 metadata columns:
           seqnames            ranges strand |           baseMean           baseMean0          baseMean1    log2FoldChange                 pval                 padj          entrezTSS   symbolTSS distanceTSS genomicFeature
              <Rle>         <IRanges>  <Rle> |          <numeric>           <numeric>          <numeric>         <numeric>            <numeric>            <numeric>        <character> <character>   <integer>    <character>
@@ -660,6 +669,8 @@ The peaks identified from DamID-seq data tend to be large (>1Kb) and the motif i
 If any high scoring matches are found, two additional metadata columns are appended to the GRanges object:
 
 ```r
+# Show metadata columns
+> bindSite
 GRanges object with 49985 ranges and 12 metadata columns:
           seqnames            ranges strand |           baseMean           baseMean0          baseMean1    log2FoldChange                 pval                 padj          entrezTSS   symbolTSS distanceTSS genomicFeature motifCenter motifScore
              <Rle>         <IRanges>  <Rle> |          <numeric>           <numeric>          <numeric>         <numeric>            <numeric>            <numeric>        <character> <character>   <integer>    <character>   <numeric>  <numeric>
@@ -688,9 +699,11 @@ To increase the resolution of peaks identified from DamID-seq data, the peak reg
 bindSite <- centerMotif(bindSite, size = 500)
 ```
 
-A GRanges object with the centered and reszied genomic ranges is returned.
+A GRanges object with the centered and resized genomic ranges is returned.
 
 ```r
+# Show resized peaks
+> bindSite
 GRanges object with 49985 ranges and 12 metadata columns:
           seqnames            ranges strand |           baseMean           baseMean0          baseMean1    log2FoldChange                 pval                 padj          entrezTSS   symbolTSS distanceTSS genomicFeature motifCenter motifScore
              <Rle>         <IRanges>  <Rle> |          <numeric>           <numeric>          <numeric>         <numeric>            <numeric>            <numeric>        <character> <character>   <integer>    <character>   <numeric>  <numeric>
