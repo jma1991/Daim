@@ -3,7 +3,6 @@
 A Bioconductor package for analysis of DamID-seq data
 
 [![Travis build status](https://travis-ci.org/jma1991/Daim.svg?branch=master)](https://travis-ci.org/jma1991/Daim)
-![GitHub package version](https://img.shields.io/github/release/jma1991/Daim.svg)
 ![GitHub last commit](https://img.shields.io/github/last-commit/jma1991/Daim.svg)
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg)
 ![Github All Releases](https://img.shields.io/github/downloads/jma1991/Daim/total.svg)
