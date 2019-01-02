@@ -685,7 +685,7 @@ The metadata columns include:
 To increase the resolution of peaks identified from DamID-seq data, the peak regions can then be centred according to the position of the motif and resized to a constant width:
 
 ```r
-bindSitesCenter <- centerMotif(bindSites, size = 500)
+bindSite <- centerMotif(bindSite, size = 500)
 ```
 
 A GRanges object with the centered and reszied genomic ranges is returned.
