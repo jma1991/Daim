@@ -4,7 +4,7 @@ Version: 0.1
 Authors@R: person("James", "Ashmore", email = "jma1991@icloud.com", role = c("aut", "cre"))
 BugReports: https://github.com/jma1991/Daim/issues
 Description: A Bioconductor package for analysis of DamID-seq data.
-Depends: R (>= 3.4.0)
+Depends: R (>= 3.5.0)
 License: MIT + file LICENSE
 LazyData: TRUE
 Imports:
