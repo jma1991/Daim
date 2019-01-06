@@ -38,6 +38,13 @@ fragmentCounts <- function(reads, fragments) {
         indexBam(reads[!baiExists])
     }
 
+    # Dispatch relevant method
+    fragmentCounts.inner(reads, fragments)
+}
+
+
+fragmentCounts.inner <- function(reads, fragments) {
+
     # Extract fragment ranges
     featureRanges <- granges(fragments)
     mcols(featureRanges)$id <- seq_along(featureRanges)
@@ -64,4 +71,48 @@ fragmentCounts <- function(reads, fragments) {
 
     # Return experiment data
     return(exptData)
+}
+
+fragmentCounts.flank <- function(reads, fragments) {
+
+    # Extract fragment ranges
+    resFrag <- granges(fragments)
+
+    # Extract flanking regions
+    restSite5 <- resize(resFrag, width = 50, fix = "start")
+    restSite3 <- resize(resFrag, width = 50, fix = "end")
+    
+    # Restrict flanking regions
+    restSite5 <- restrict(restSite5, start = start(resFrag), end = end(resFrag))
+    restSite3 <- restrict(restSite3, start = start(resFrag), end = end(resFrag))
+    
+    # Combine flanking regions
+    restSites <- c(restSite5, restSite3)[order(c(seq_along(restSite5), seq_along(restSite3)))]
+    
+    # Rename flanking regions
+    mcols(restSites)$id <- rep(seq_along(resFrag), each = 2)
+    
+    # Count reads into fragments
+    annotFile <- Rsubread::createAnnotationFile(restSites
+    invisible(utils::capture.output(featureCounts <- Rsubread::featureCounts(
+        files = reads,
+        annot.ext = annotFile,
+        useMetaFeatures = TRUE,
+        read2pos = 5,
+        ignoreDup = TRUE
+    )))
+    
+    # Create experiment data
+    assaysData <- list(countsData = unname(featureCounts$counts))
+    sampleData <- DataFrame(bamPath = reads)
+    
+    # Combine experiment data
+    exptData <- SummarizedExperiment(
+        assays = assaysData,
+        rowRanges = fragments,
+        colData = sampleData
+    )
+    
+    # Return experiment data
+    exptData
 }
