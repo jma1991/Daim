@@ -17,7 +17,7 @@ digestGenome <- function(object) {
     validClass <- c("BSgenome", "DNAStringSet", "FaFile")
     wrongClass <- !(class(object) %in% validClass)
     if (wrongClass) {
-        text <- paste(paste("*", validClass), collapse = "\n")
+        text <- paste("*", validClass, collapse = "\n")
         stop("`object` must be of class:\n", text, call. = FALSE)
     }
 
