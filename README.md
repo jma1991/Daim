@@ -172,7 +172,7 @@ GRanges object with 6669641 ranges and 2 metadata columns:
   seqinfo: 21 sequences from mm10 genome
 ```
 
-Restriction fragment abundance is quantified by counting the number of reads mapped to each restriction fragment sequence. The mapped reads are assigned to a single restriction fragment according to their 5' mapped position. Reads marked as a PCR duplicates or mapped to multiple positions or restriction fragments are removed. The *fragmentCounts* function is used to generate restriction fragment read counts for each sequencing library:
+Restriction fragment abundance is quantified by counting the number of reads mapped to each restriction fragment sequence. The mapped reads are assigned to a single restriction fragment according to their 5' mapped position. Reads marked as PCR duplicates or mapped to multiple positions / restriction fragments are removed. The *fragmentCounts* function is used to generate restriction fragment read counts for each sequencing library:
 
 ```r
 # List sequence alignment data
