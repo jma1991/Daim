@@ -88,7 +88,7 @@ digestGenome.BSgenome <- function(object) {
     seqinfo(rangesData) <- chromInfo
 
     # Return fragment ranges
-    return(rangesData)
+    rangesData
 }
 
 digestGenome.DNAStringSet <- function(object) {
@@ -150,7 +150,7 @@ digestGenome.DNAStringSet <- function(object) {
     seqinfo(rangesData) <- chromInfo
 
     # Return fragment ranges
-    return(rangesData)
+    rangesData
 }
 
 digestGenome.FaFile <- function(object) {
@@ -224,5 +224,5 @@ digestGenome.FaFile <- function(object) {
     seqinfo(rangesData) <- chromInfo
 
     # Return fragment ranges
-    return(rangesData)
+    rangesData
 }
