@@ -54,8 +54,8 @@ computeInput.RangedSummarizedExperiment <- function(object) {
     # Calculate background from Dam methylation
     assayData <- pmax(
         meanAve = aveValue,
-        mean10k = rollAssay(object, size = 1e4),
-        mean20k = rollAssay(object, size = 2e4)
+        mean05k = rollAssay(object, size = 5e3),
+        mean10k = rollAssay(object, size = 1e4)
     )
 
     # Replace assay data
