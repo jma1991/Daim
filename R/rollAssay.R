@@ -23,7 +23,7 @@ rollAssay <- function(object, size = NULL) {
 
         # Find neighbouring fragments
         queryRanges <- rowRanges(assaysList[[chromLevel]])
-        hitsObject <- findOverlaps(queryRanges, queryRanges, maxgap = 10)
+        hitsObject <- findOverlaps(queryRanges, queryRanges, maxgap = size)
 
         # Extract indices
         queryIndex <- queryHits(hitsObject)
