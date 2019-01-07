@@ -11,7 +11,7 @@ fragmentCounts(reads, fragments, mode = c("inner", "flank"))
 
 \item{fragments}{A \code{GRanges} object of restriction fragments.}
 
-\item{mode}{Read counting mode.}
+\item{mode}{Read counting mode. Can be either "inner" or "flank".}
 }
 \value{
 A \code{RangedSummarizedExperiment} object.
