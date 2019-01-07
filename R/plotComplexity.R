@@ -30,7 +30,7 @@ plotComplexity <- function(object, group = NULL) {
 plotComplexity.RangedSummarizedExperiment <- function(object, group = NULL) {
 
     # Calculate complexity curve for each library
-    curveList <- apply(assay(object), 2, function(libCounts) {
+    curveList <- apply(assay(object, "countsData"), 2, function(libCounts) {
 
         # Compute library size
         libSize <- sum(libCounts)
