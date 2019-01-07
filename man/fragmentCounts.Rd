@@ -4,12 +4,14 @@
 \alias{fragmentCounts}
 \title{Count reads in restriction fragments}
 \usage{
-fragmentCounts(reads, fragments)
+fragmentCounts(reads, fragments, mode = c("inner", "flank"))
 }
 \arguments{
 \item{reads}{A character vector of paths to BAM files.}
 
 \item{fragments}{A \code{GRanges} object of restriction fragments.}
+
+\item{mode}{Read counting mode.}
 }
 \value{
 A \code{RangedSummarizedExperiment} object.
