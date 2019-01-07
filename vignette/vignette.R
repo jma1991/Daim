@@ -2,7 +2,7 @@ pkgName <- c("Daim", "BSgenome.Mmusculus.UCSC.mm10", "org.Mm.eg.db", "TxDb.Mmusc
 pkgLoad <- lapply(pkgName, library, character.only = TRUE)
 
 rawFile <- system.file("vignette", "rawData.rds", package = "Daim")
-rawData <- readRDS(rawFile)
+rawData <- readRDS("~/GitHub/Daim/vignette/rawData.rds")
 
 groupFactor <- factor(c(0, 0, 1, 1), levels = c(0, 1))
 
