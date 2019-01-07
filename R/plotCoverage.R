@@ -30,7 +30,7 @@ plotCoverage <- function(object, group = NULL) {
 plotCoverage.RangedSummarizedExperiment <- function(object, group = NULL) {
 
     # Compute cumulative distribution function
-    distFun <- apply(assays(object)[["countsData"]], 2, ecdf)
+    distFun <- apply(assay(object, "countsData"), 2, ecdf)
     distSeq <- seq(0, 100, length.out = 100)
     distCov <- lapply(distFun, function(x) x(distSeq))
     distCov <- 1 - t(do.call(rbind, distCov))
