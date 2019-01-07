@@ -4,9 +4,10 @@
 #'
 #' @param reads A character vector of paths to BAM files.
 #' @param fragments A \code{GRanges} object of restriction fragments.
+#' @param mode Read counting mode.
 #' @return A \code{RangedSummarizedExperiment} object.
 
-fragmentCounts <- function(reads, fragments) {
+fragmentCounts <- function(reads, fragments, mode = c("inner", "flank")) {
 
     # Check argument missing
     if (missing(reads)) {
@@ -37,11 +38,20 @@ fragmentCounts <- function(reads, fragments) {
     if (!all(baiExists)) {
         indexBam(reads[!baiExists])
     }
+    
+    # Check counting mode is valid
+    countMode <- match.arg(mode)
 
     # Dispatch relevant method
-    fragmentCounts.inner(reads, fragments)
-}
+    if (countMode == "inner") {
+        fragmentCounts.inner(reads, fragments)
+    } else if (userMode == "flank") {
+        fragmentCounts.flank(reads, fragments)
+    } else {
+        stop('`mode` should be one of "inner" or "flank".', call. = FALSE)
+    }
 
+}
 
 fragmentCounts.inner <- function(reads, fragments) {
 
