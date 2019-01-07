@@ -87,10 +87,13 @@ fragmentCounts.flank <- function(reads, fragments) {
 
     # Extract fragment ranges
     resFrag <- granges(fragments)
+    
+    # Define flank size based upon protocol
+    flankSize <- 300
 
     # Extract flanking regions
-    restSite5 <- resize(resFrag, width = 50, fix = "start")
-    restSite3 <- resize(resFrag, width = 50, fix = "end")
+    restSite5 <- resize(resFrag, width = flankSize, fix = "start")
+    restSite3 <- resize(resFrag, width = flankSize, fix = "end")
 
     # Restrict flanking regions
     restSite5 <- restrict(restSite5, start = start(resFrag), end = end(resFrag))
