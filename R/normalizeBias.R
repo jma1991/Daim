@@ -59,7 +59,6 @@ normalizeBias <- function(object, group) {
 normalizeBias.RangedSummarizedExperiment <- function(object, group) {
 
     # Conditional quantile normalisation
-    requireNamespace("cqn")
     cqNorm <- cqn::cqn(assay(object, "countsData"), mcols(object)$digestByProb, mcols(object)$digestBySize, sqn = FALSE)
     cqData <- 2^(cqNorm$y + cqNorm$offset)
 

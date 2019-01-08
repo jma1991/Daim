@@ -1,4 +1,4 @@
-pkgName <- c("Daim", "BSgenome.Mmusculus.UCSC.mm10", "org.Mm.eg.db", "TxDb.Mmusculus.UCSC.mm10.knownGene")
+pkgName <- c("BSgenome.Mmusculus.UCSC.mm10", "org.Mm.eg.db", "TxDb.Mmusculus.UCSC.mm10.knownGene")
 pkgLoad <- lapply(pkgName, library, character.only = TRUE)
 
 rawFile <- system.file("vignette", "rawData.rds", package = "Daim")
@@ -67,7 +67,7 @@ writeBroad(bindSite, "vignette/bindSite.broadPeak")
 # Compute background methylation
 inputData <- computeInput(normData)
 
-# Export Input abundances
+# Write Input abundances
 writeAssay(inputData, "vignette/Input1.bigWig", sample = 1)
 writeAssay(inputData, "vignette/Input2.bigWig", sample = 2)
 
