@@ -25,6 +25,7 @@ Imports:
     matrixStats,
     methods,
     qsmooth,
+    quantreg,
     Rsamtools,
     RColorBrewer,
     Rsubread,
