@@ -95,7 +95,7 @@ callPeaks.RangedSummarizedExperiment <- function(object, alpha = 0.05, lfc = 0) 
     colnames(designMatrix) <- c("groupFactor0", "groupFactor1")
 
     # Estimate mean-variance relationship
-    qsData <- assays(object)[["qsmoothData"]]
+    qsData <- assay(object, "qsmoothData")
     modelVar <- limma::voomaByGroup(qsData, group = object$groupFactor)
 
     # Fit linear model for each fragment
