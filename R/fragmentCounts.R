@@ -80,7 +80,7 @@ fragmentCounts.inner <- function(reads, fragments) {
     )
 
     # Return experiment data
-    return(exptData)
+    exptData
 }
 
 fragmentCounts.flank <- function(reads, fragments) {
