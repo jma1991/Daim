@@ -27,10 +27,6 @@ digestGenome <- function(object) {
 
 digestGenome.BSgenome <- function(object) {
 
-    # Get genome information
-    organismName <- organism(object)
-    providerName <- provider(object)
-
     # Get standard chromosome names
     matchNames <- c("M", "_")
     matchNames <- paste(matchNames, collapse = "|")
