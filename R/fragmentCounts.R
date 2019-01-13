@@ -70,12 +70,13 @@ fragmentCounts.inner <- function(reads, fragments) {
 
     # Create experiment data
     assaysData <- list(countsData = unname(featureCounts$counts))
+    rangesData <- fragments
     sampleData <- DataFrame(bamPath = reads)
 
     # Combine experiment data
     rawData <- SummarizedExperiment(
         assays = assaysData,
-        rowRanges = fragments,
+        rowRanges = rangesData,
         colData = sampleData
     )
 
@@ -117,12 +118,13 @@ fragmentCounts.flank <- function(reads, fragments) {
 
     # Create experiment data
     assaysData <- list(countsData = unname(featureCounts$counts))
+    rangesData <- fragments
     sampleData <- DataFrame(bamPath = reads)
 
     # Combine experiment data
     rawData <- SummarizedExperiment(
         assays = assaysData,
-        rowRanges = fragments,
+        rowRanges = rangesData,
         colData = sampleData
     )
 
