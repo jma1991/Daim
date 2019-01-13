@@ -87,24 +87,24 @@ fragmentCounts.inner <- function(reads, fragments) {
 fragmentCounts.flank <- function(reads, fragments) {
 
     # Extract fragment ranges
-    resFrag <- granges(fragments)
+    restFrags <- granges(fragments)
     
-    # Define flank size based upon protocol
-    flankSize <- 300
+    # Define flank size
+    flankSize <- 100
 
     # Extract flanking regions
-    restSite5 <- resize(resFrag, width = flankSize, fix = "start")
-    restSite3 <- resize(resFrag, width = flankSize, fix = "end")
+    restSite5 <- resize(restFrags, width = flankSize, fix = "start")
+    restSite3 <- resize(restFrags, width = flankSize, fix = "end")
 
     # Restrict flanking regions
-    restSite5 <- restrict(restSite5, start = start(resFrag), end = end(resFrag))
-    restSite3 <- restrict(restSite3, start = start(resFrag), end = end(resFrag))
+    restSite5 <- restrict(restSite5, start = start(restFrags), end = end(restFrags))
+    restSite3 <- restrict(restSite3, start = start(restFrags), end = end(restFrags))
 
     # Combine flanking regions
     restSites <- c(restSite5, restSite3)[order(c(seq_along(restSite5), seq_along(restSite3)))]
 
     # Rename flanking regions
-    mcols(restSites)$id <- rep(seq_along(resFrag), each = 2)
+    mcols(restSites)$id <- rep(seq_along(restFrags), each = 2)
 
     # Count reads into fragments
     annotFile <- Rsubread::createAnnotationFile(restSites)
