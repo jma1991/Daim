@@ -86,13 +86,6 @@ normalizeBias.RangedSummarizedExperiment <- function(object, group) {
     # Store filter genes by expression level
     rowData(object)$filterByExpr <- edgeR::filterByExpr(ctNorm, group = groupFactor, lib.size = ctSize)
 
-    # Store filter genes by expression level
-    #minGroup <- min(table(groupFactor))
-    #minCount <- quantile(rowMeans(qsData), probs = 0.95)
-    #fragGroups <- genefilter::kOverA(k = minGroup, A = minCount)
-    #fragFilter <- genefilter::filterfun(fragGroups)
-    #rowData(object)$filterByExpr <- genefilter::genefilter(qsData, fragFilter)
-
     # Replace assay data
     colnames(qsData) <- colnames(object)
     rownames(qsData) <- rownames(object)
