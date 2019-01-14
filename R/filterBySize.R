@@ -31,10 +31,10 @@ filterBySize <- function(object, min = 100, max = 100000) {
         stop("`max` must have length 1, not length ", length(min), ".", call. = FALSE)
     }
     if (min < 0) {
-        stop("`min` must be greater than zero.", call. = FALSE)
+        stop("`min` must be a positive number.", call. = FALSE)
     }
     if (max < 0) {
-        stop("`max` must be greater than zero.", call. = FALSE)
+        stop("`max` must be a positive number.", call. = FALSE)
     }
     if (max < min) {
         stop("`max` must be greater than `min`.", call. = FALSE)
