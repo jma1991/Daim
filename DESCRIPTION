@@ -1,6 +1,6 @@
 Package: Daim
 Title: Analysis, interpretation, and visualization of DamID-seq data
-Version: 0.1
+Version: 0.99.0
 Authors@R: person("James", "Ashmore", email = "jma1991@icloud.com", role = c("aut", "cre"))
 BugReports: https://github.com/jma1991/Daim/issues
 Description: A Bioconductor package for analysis of DamID-seq data.
