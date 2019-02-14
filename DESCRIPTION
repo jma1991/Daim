@@ -37,6 +37,8 @@ Imports:
 Remotes: github::stephaniehicks/qsmooth
 biocViews: 
 VignetteBuilder: knitr
-Suggests: knitr
+Suggests: 
+    knitr,
+    rmarkdown
 RoxygenNote: 6.1.1
 Encoding: UTF-8
