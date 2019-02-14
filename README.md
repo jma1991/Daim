@@ -235,7 +235,7 @@ The *plotCoverage* function displays the read coverage of restriction fragments 
 # Plot read coverage
 > plotCoverage(rawData, group = groupFactor)
 ```
-![plotCoverage](vignette/plotCoverage.png)
+![plotCoverage](vignettes/plotCoverage.png)
 
 #### Fragment complexity
 
@@ -245,7 +245,7 @@ The *plotComplexity* function displays the number of distinct restriction fragme
 # Plot fragment complexity
 > plotComplexity(rawData, group = groupFactor)
 ```
-![plotComplexity](vignette/plotComplexity.png)
+![plotComplexity](vignettes/plotComplexity.png)
 
 #### Sample enrichment
 
@@ -255,7 +255,7 @@ The *plotEnrichment* function displays a cumulative sum curve showing the fracti
 # Plot sample enrichment
 > plotEnrichment(rawData, group = groupFactor)
 ```
-![plotEnrichment](vignette/plotEnrichment.png)
+![plotEnrichment](vignettes/plotEnrichment.png)
 
 ### Bias normalization
 
@@ -361,7 +361,7 @@ The *writeRatio* function can also be used to generate tracks of abundance ratio
 
 The bigWig files can then be visualised in a genome browser, such as IGV:
 
-![writeAssay](vignette/writeAssay.png)
+![writeAssay](vignettes/writeAssay.png)
 
 ### Sample reproducibility
 
@@ -384,7 +384,7 @@ The *plotCorrelation* function can be used to measure the linear correlation (us
 # Dam2 vs Fusion2
 > plotCorrelation(normData, contrast = c(2, 4))
 ```
-![plotCorrelation](vignette/plotCorrelation.png)
+![plotCorrelation](vignettes/plotCorrelation.png)
 
 The Dam samples are often more correlated than Dam-fusion because chromatin accessibility appears to be more reproducible between independent samples than DNA binding. This is particulary true at lower cell numbers, where only a subset of binding is reproducible across all of the cells in a population. If the correlation between samples is low and you believe the cells to be fairly homogenous, additional libraries may be required in order to achieve any statistical significance in peak calling.
 
@@ -405,7 +405,7 @@ One issue with plotting one sample against the other is that the magnitude of an
 # Dam2 vs Fusion2
 > plotMA(normData, contrast = c(4, 2))
 ```
-![plotMA](vignette/plotMA.png)
+![plotMA](vignettes/plotMA.png)
 
 Differences amongst the Dam and Dam-fusion samples should decrease as fragment abundance increases due to biological variation overwhelming any technical variation. When compared against Dam samples, the Dam-fusion samples should exhibit a positive fold change at higher abundances where genuine DNA binding is predicted.
 
@@ -417,7 +417,7 @@ To visualise the effect of bias normalization, the distribution of raw and norma
 # Coloured by group
 > plotDensity(normData, group = groupFactor)
 ```
-![plotDensity](vignette/plotDensity.png)
+![plotDensity](vignettes/plotDensity.png)
 
 The Dam and Dam-fusion samples will exhibit globally different abundance profiles due to large differences in library composition. The normalization procedure implemented in Daim is designed to retain these differences which are due to targeting of the fusion protein to genuine DNA binding sites by the chromatin protein.
 
@@ -429,7 +429,7 @@ Another way to assess overall similarity between samples is to visualise sample-
 # Coloured by group
 > plotPCA(normData, group = groupFactor)
 ```
-![plotPCA](vignette/plotPCA.png)
+![plotPCA](vignettes/plotPCA.png)
 
 #### Multidimensional scaling
 
@@ -439,7 +439,7 @@ Sample-to-sample distances can also be visualised using multi-dimensional scalin
 # Coloured by group
 > plotMDS(normData, group = groupFactor)
 ```
-![plotMDS](vignette/plotMDS.png)
+![plotMDS](vignettes/plotMDS.png)
 
 ### Peak calling
 
@@ -495,7 +495,7 @@ After peak calling, the *writeBroad* function can be used to generate a broadPea
 
 It is highly recommended that all broadPeak and bigWig files are imported into a genome browser for inspection. If multiple low enrichment peaks are found, try increasing the lfc threshold until these are removed. Peak calling is often an iterative process whereby peaks are refined based upon prior expectation, which in most cases is necessary for biological interpretation.
 
-![bindSite](vignette/bindSite.png)
+![bindSite](vignettes/bindSite.png)
 
 #### DNA accessibility
 
@@ -590,7 +590,7 @@ Again, the *writeBroad* function can be used to generate broadPeak files contain
 > writeBroad(openSite, file = "openSite.broadPeak")
 ```
 
-![openSite](vignette/openSite.png)
+![openSite](vignettes/openSite.png)
 
 ### Downstream analyses
 
@@ -640,19 +640,19 @@ A number of plotting functions can then be used to explore the distribution of p
 # Binned by absolute distance to TSS
 > plotTSS(bindSite, dist = "absolute")
 ```
-![plotTSS-abs](vignette/plotTSS-abs.png)
+![plotTSS-abs](vignettes/plotTSS-abs.png)
 
 ```r
 # Binned by relative distance to TSS
 > plotTSS(bindSite, dist = "relative")
 ```
-![plotTSS-rel](vignette/plotTSS-rel.png)
+![plotTSS-rel](vignettes/plotTSS-rel.png)
 
 ```r
 # Binned by genomic feature
 plotFeature(bindSite)
 ````
-![plotFeature](vignette/plotFeature.png)
+![plotFeature](vignettes/plotFeature.png)
 
 #### Sequence analysis
 
