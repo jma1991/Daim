@@ -37,7 +37,8 @@ Imports:
 Remotes: github::stephaniehicks/qsmooth
 biocViews: 
 VignetteBuilder: knitr
-Suggests: 
+Suggests:
+    BiocStyle,
     knitr,
     rmarkdown
 RoxygenNote: 6.1.1
