@@ -20,6 +20,7 @@ Imports:
     GenomicFeatures,
     GenomeInfoDb,
     GenomicRanges,
+    graphics,
     IRanges,
     limma,
     matrixStats,

@@ -79,7 +79,7 @@ normalizeBias.RangedSummarizedExperiment <- function(object, group) {
     qsData <- qsmooth::qsmoothData(qsNorm)
 
     # Store filter genes by fragment length
-    rowData(object)$filterBySize <- filterBySize(object, min = 100, max = 100000)
+    rowData(object)$filterBySize <- filterBySize(rowRanges(object), min = 100, max = 100000)
 
     # Store filter genes by expression level
     rowData(object)$filterByExpr <- edgeR::filterByExpr(ctNorm, group = groupFactor, lib.size = ctSize)
@@ -92,8 +92,8 @@ normalizeBias.RangedSummarizedExperiment <- function(object, group) {
     # Compute base enrichment
     rowData <- rowData(object)
     rowData$baseMean <- rowMeans(qsData)
-    rowData$baseMean0 <- rowMeans(qsData[, groupFactor == 0])
-    rowData$baseMean1 <- rowMeans(qsData[, groupFactor == 1])
+    rowData$baseMean0 <- rowMeans(qsData[, groupFactor == 0, drop = FALSE])
+    rowData$baseMean1 <- rowMeans(qsData[, groupFactor == 1, drop = FALSE])
 
     # Compute fold enrichment
     rowData$log2FoldChange <- rowData$baseMean1 - rowData$baseMean0

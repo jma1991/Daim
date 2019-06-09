@@ -12,11 +12,11 @@
 #'
 
 daimTreat <- function(fit, lfc = log2(1.2), trend=FALSE, robust=FALSE, winsor.tail.p=c(0.05,0.1))
-    #	Moderated t-statistics with threshold
-    #	Davis McCarthy, Gordon Smyth
-    #	25 July 2008.  Last revised 27 February 2014.
+    # Moderated t-statistics with threshold
+    # Davis McCarthy, Gordon Smyth
+    # 25 July 2008.  Last revised 27 February 2014.
 {
-    #	Check fit
+    # Check fit
     if(!is(fit,"MArrayLM")) stop("fit must be an MArrayLM object")
     if(is.null(fit$coefficients)) stop("coefficients not found in fit object")
     if(is.null(fit$stdev.unscaled)) stop("stdev.unscaled not found in fit object")

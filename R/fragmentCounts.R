@@ -59,8 +59,16 @@ fragmentCounts.inner <- function(reads, fragments) {
     featureRanges <- granges(fragments)
     mcols(featureRanges)$id <- seq_along(featureRanges)
 
+    # Create annotation file
+    annotFile <- data.frame(
+        GeneID = featureRanges$id,
+        Chr = seqnames(featureRanges),
+        Start = start(featureRanges),
+        End = end(featureRanges),
+        Strand = "+"
+    )
+
     # Count reads into fragments
-    annotFile <- Rsubread::createAnnotationFile(featureRanges)
     invisible(utils::capture.output(featureCounts <- Rsubread::featureCounts(
         files = reads,
         annot.ext = annotFile,
@@ -88,7 +96,7 @@ fragmentCounts.flank <- function(reads, fragments) {
 
     # Extract fragment ranges
     restFrags <- granges(fragments)
-    
+
     # Define flank size
     flankSize <- 100
 
@@ -106,8 +114,16 @@ fragmentCounts.flank <- function(reads, fragments) {
     # Rename flanking regions
     mcols(restSites)$id <- rep(seq_along(restFrags), each = 2)
 
+    # Create annotation file
+    annotFile <- data.frame(
+        GeneID = restSites$id,
+        Chr = seqnames(restSites),
+        Start = start(restSites),
+        End = end(restSites),
+        Strand = "+"
+    )
+
     # Count reads into fragments
-    annotFile <- Rsubread::createAnnotationFile(restSites)
     invisible(utils::capture.output(featureCounts <- Rsubread::featureCounts(
         files = reads,
         annot.ext = annotFile,

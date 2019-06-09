@@ -20,13 +20,13 @@ writeAssay <- function(object, file = "", sample = NULL) {
     }
 
     # Check argument class
-    if (class(object) != "RangedSummarizedExperiment") {
+    if (!is(object, "RangedSummarizedExperiment")) {
         stop("`object` must be of class RangedSummarizedExperiment.", call. = FALSE)
     }
-    if (class(file) != "character") {
+    if (!is(file, "character")) {
         stop("`file` must be a single character string.", call. = FALSE)
     }
-    if (!(class(sample) %in% c("numeric", "character"))) {
+    if (!(class(sample) %in% c("character", "numeric"))) {
         stop("`sample` must be a numeric or character class.", call. = FALSE)
     }
 
@@ -42,9 +42,15 @@ writeAssay <- function(object, file = "", sample = NULL) {
 
 writeAssay.RangedSummarizedExperiment <- function(object, file = "", sample = NULL) {
 
-    # Create coverage track
+    assayNames <- assayNames(object)
+
     rowRanges <- rowRanges(object)
-    score(rowRanges) <- 2^(assay(object)[, sample])
+
+    if (assayNames[1] == "countsData") {
+        score(rowRanges) <- assay(object)[, sample]
+    } else if (assayNames[1] == "qsmoothData") {
+        score(rowRanges) <- 2^assay(object)[, sample]
+    }
 
     # Export coverage track
     rtracklayer::export(rowRanges, con = file, format = "bigWig")

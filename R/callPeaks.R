@@ -122,8 +122,7 @@ callPeaks.RangedSummarizedExperiment <- function(object, alpha = 0.05, lfc = 0) 
 
     # Combine fragments into windows
     fragmentRanges <- rowRanges(object)[filterByTests]
-    medianWindow <- median(width(fragmentRanges))
-    windowRanges <- csaw::mergeWindows(fragmentRanges, tol = medianWindow)
+    windowRanges <- csaw::mergeWindows(fragmentRanges, tol = 100)
 
     # Combine statistics across multiple tests
     windowTests <- csaw::combineTests(windowRanges$id, fragmentTests, pval.col = "P.Value", fc.col = "logFC")

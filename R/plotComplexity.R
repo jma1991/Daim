@@ -61,8 +61,8 @@ plotComplexity.RangedSummarizedExperiment <- function(object, group = NULL) {
     })
 
     # Define max limits
-    maxReads <- max(sapply(curveList, function(x) max(x$totalReads, na.rm = TRUE)))
-    maxFrags <- max(sapply(curveList, function(x) max(x$totalFrags, na.rm = TRUE)))
+    maxReads <- max(vapply(curveList, function(x) { max(x$totalReads, na.rm = TRUE) }, numeric(1)))
+    maxFrags <- max(vapply(curveList, function(x) { max(x$totalFrags, na.rm = TRUE) }, numeric(1)))
 
     # Create pretty breaks
     sideBreaks1 <- pretty(seq(0, maxReads, by = 1))

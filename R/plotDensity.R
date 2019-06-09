@@ -40,8 +40,8 @@ plotDensity.RangedSummarizedExperiment <- function(object, group = NULL) {
     densityList <- apply(assayMatrix, 2, density)
 
     # Define pretty breaks
-    sideBreaks1 <- pretty(unlist(sapply(densityList, "[", "x")))
-    sideBreaks2 <- pretty(unlist(sapply(densityList, "[", "y")))
+    sideBreaks1 <- pretty(unlist(vapply(densityList, "[", "x", numeric(1))))
+    sideBreaks2 <- pretty(unlist(vapply(densityList, "[", "y", numeric(1))))
 
     # Define pretty limits
     sideLimits1 <- range(sideBreaks1)
