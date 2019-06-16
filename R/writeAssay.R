@@ -70,7 +70,7 @@ writeAssay.counts <- function(object, file = "", sample = NULL) {
     score(rangeData) <- colAssay
 
     # Export coverage track
-    rtracklayer::export(rowRanges, con = file, format = "bigWig")
+    rtracklayer::export(rangeData, con = file, format = "bigWig")
 
 }
 
@@ -91,6 +91,6 @@ writeAssay.qsmooth <- function(object, file = "", sample = NULL) {
     score(rangeData) <- colAssay
 
     # Export coverage track
-    rtracklayer::export(rowRanges, con = file, format = "bigWig")
+    rtracklayer::export(rangeData, con = file, format = "bigWig")
 
 }
