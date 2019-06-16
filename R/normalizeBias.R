@@ -84,10 +84,10 @@ normalizeBias.RangedSummarizedExperiment <- function(object, group) {
     # Store filter genes by expression level
     rowData(object)$filterByExpr <- edgeR::filterByExpr(ctNorm, group = groupFactor, lib.size = ctSize)
 
-    # Replace assay data
+    # Add qsmooth assay data
     colnames(qsData) <- colnames(object)
     rownames(qsData) <- rownames(object)
-    assays(object) <- list(qsmoothData = qsData)
+    assay(object, "qsmoothData") <- qsData
 
     # Compute base enrichment
     rowData <- rowData(object)
@@ -103,4 +103,5 @@ normalizeBias.RangedSummarizedExperiment <- function(object, group) {
 
     # Return class object
     object
+
 }
