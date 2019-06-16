@@ -83,7 +83,7 @@ normalizeBias.RangedSummarizedExperiment <- function(object, group) {
     rowData(object)$filterBySize <- keepSize
 
     # Store filter genes by expression level
-    keepExpr <- filterByExpr(ctNorm, group = groupFactor, lib.size = ctSize, min.count = 10, min.total.count = 50)
+    keepExpr <- filterByExpr(ctNorm, group = groupFactor, lib.size = ctSize, min.count = 50)
     rowData(object)$filterByExpr <- keepExpr
 
     # Add qsmooth assay data
