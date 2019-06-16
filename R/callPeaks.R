@@ -88,7 +88,7 @@ callPeaks.RangedSummarizedExperiment <- function(object, alpha = 0.05, lfc = 0) 
     # Filter by methylation and size
     exprFilter <- rowData(object)$filterByExpr
     sizeFilter <- rowData(object)$filterBySize
-    object <- object[exprFilter & sizeFilter]
+    object <- object[exprFilter & sizeFilter, ]
 
     # Create design matrix
     designMatrix <- model.matrix(~ 0 + object$groupFactor)
@@ -121,7 +121,7 @@ callPeaks.RangedSummarizedExperiment <- function(object, alpha = 0.05, lfc = 0) 
     fragmentTable <- fragmentTable[filterByTests, ]
 
     # Combine fragments into windows
-    fragmentRanges <- rowRanges(object)[filterByTests]
+    fragmentRanges <- rowRanges(object)[filterByTests, ]
     windowRanges <- csaw::mergeWindows(fragmentRanges, tol = 100)
 
     # Combine statistics across multiple tests

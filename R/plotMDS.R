@@ -96,10 +96,10 @@ plotMDS.RangedSummarizedExperiment <- function(object, group = NULL) {
 
     # Retrieve assay matrix
     if (is.null(sizeFilter) | is.null(exprFilter)) {
-        assayMatrix <- assay(object)
+        assayMatrix <- assay(object, "qsmoothData")
     } else {
         assayFilter <- sizeFilter & exprFilter
-        assayMatrix <- assay(object[assayFilter])
+        assayMatrix <- assay(object, "qsmoothData")[assayFilter, ]
     }
 
     # Multidimensional scaling

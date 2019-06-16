@@ -95,9 +95,9 @@ plotPCA.RangedSummarizedExperiment <- function(object, group = NULL) {
     # Retrieve assay matrix
     if (is.logical(sizeFilter) & is.logical(exprFilter)) {
         assayFilter <- sizeFilter & exprFilter
-        assayMatrix <- assay(object[assayFilter])
+        assayMatrix <- assay(object, "qsmoothData")[assayFilter, ]
     } else {
-        assayMatrix <- assay(object)
+        assayMatrix <- assay(object, "qsmoothData")
     }
 
     # Identify principal components

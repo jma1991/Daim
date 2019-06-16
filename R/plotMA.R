@@ -48,9 +48,9 @@ plotMA.RangedSummarizedExperiment <- function(object, contrast) {
     # Retrieve assay matrix
     if (is.logical(sizeFilter) & is.logical(exprFilter)) {
         assayFilter <- sizeFilter & exprFilter
-        assayMatrix <- assay(object[assayFilter])
+        assayMatrix <- assay(object, "qsmoothData")[assayFilter, ]
     } else {
-        assayMatrix <- assay(object)
+        assayMatrix <- assay(object, "qsmoothData")
     }
 
     # Get contrast values
