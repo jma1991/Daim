@@ -79,10 +79,18 @@ normalizeBias.RangedSummarizedExperiment <- function(object, group) {
     qsData <- qsmooth::qsmoothData(qsNorm)
 
     # Store filter genes by fragment length
-    rowData(object)$filterBySize <- filterBySize(rowRanges(object), min = 100, max = 100000)
+    keepSize <- filterBySize(rowRanges(object), min = 100, max = 100000)
+    rowData(object)$filterBySize <- keepSize
 
     # Store filter genes by expression level
-    rowData(object)$filterByExpr <- edgeR::filterByExpr(ctNorm, group = groupFactor, lib.size = ctSize)
+    minCount <- 10
+    minTotalCount <- quantile(rowMeans(ctNorm), prob = 0.25)
+    keepExpr <- filterByExpr(ctNorm,
+                             group = groupFactor,
+                             lib.size = ctSize,
+                             min.count = minCount,
+                             min.total.count = minTotalCount)
+    rowData(object)$filterByExpr <- keepExpr
 
     # Add qsmooth assay data
     colnames(qsData) <- colnames(object)
