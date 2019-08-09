@@ -4,12 +4,14 @@
 \alias{writeAssay}
 \title{Write assay to a bigWig file}
 \usage{
-writeAssay(object, file = "", sample = NULL)
+writeAssay(object, file = "", assay = "", sample = "")
 }
 \arguments{
 \item{object}{A \code{RangedSummarizedExperiment} object.}
 
 \item{file}{A character string naming a file open for writing.}
+
+\item{assay}{Name of assay slot.}
 
 \item{sample}{Either a column name or index.}
 }
