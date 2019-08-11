@@ -14,7 +14,7 @@ plotCoverage <- function(object, group = NULL) {
     }
 
     # Check argument class
-    if (class(object) != "RangedSummarizedExperiment") {
+    if (!is(object, "RangedSummarizedExperiment")) {
         stop("`object` must be a RangedSummarizedExperiment class.", call. = FALSE)
     }
 
@@ -56,28 +56,31 @@ plotCoverage.RangedSummarizedExperiment <- function(object, group = NULL) {
     }
 
     # Draw plotting area
-    matplot(x = distSeq,
-            y = distCov,
-            type = "l",
-            lty = 1,
-            col = groupColors,
-            axes = TRUE,
-            main = "Read coverage",
-            xlab = "Read count",
-            ylab = "Fraction of fragments >= Read count",
-            xlim = sideLimits1,
-            ylim = sideLimits2,
-            xaxt = "n",
-            yaxt = "n")
+    matplot(
+        x = distSeq,
+        y = distCov,
+        type = "l",
+        lty = 1,
+        col = groupColors,
+        axes = TRUE,
+        main = "Read coverage",
+        xlab = "Read count",
+        ylab = "Fraction of fragments >= Read count",
+        xlim = sideLimits1,
+        ylim = sideLimits2,
+        xaxt = "n",
+        yaxt = "n")
 
     # Draw axis ticks
     axis(side = 1, at = sideBreaks1, las = 0)
     axis(side = 2, at = sideBreaks2, las = 2)
 
     # Draw plot legend
-    legend("topright",
-           legend = levels(groupFactor),
-           col = unique(groupColors),
-           bty = "n",
-           lty = 1)
+    legend(
+        "topright",
+        legend = levels(groupFactor),
+        col = unique(groupColors),
+        bty = "n",
+        lty = 1)
+
 }

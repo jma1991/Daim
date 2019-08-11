@@ -14,7 +14,7 @@ plotComplexity <- function(object, group = NULL) {
     }
 
     # Check argument class
-    if (class(object) != "RangedSummarizedExperiment") {
+    if (!is(object, "RangedSummarizedExperiment")) {
         stop("`object` must be a RangedSummarizedExperiment class.", call. = FALSE)
     }
 

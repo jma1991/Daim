@@ -16,10 +16,10 @@ writeBroad <- function(object, file = "") {
     }
 
     # Check argument class
-    if (class(object) != "GRanges") {
+    if (!is(object, "GRanges")) {
         stop("`object` must be a GRanges object.", call. = FALSE)
     }
-    if (class(file) != "character") {
+    if (!is(file, "character")) {
         stop("`file` must be a character string.", call. = FALSE)
     }
 

@@ -20,10 +20,10 @@ writeRatio <- function(object, file = "", contrast = NULL) {
     }
 
     # Check argument class
-    if (class(object) != "RangedSummarizedExperiment") {
+    if (!is(object, "RangedSummarizedExperiment")) {
         stop("`object` must be of class RangedSummarizedExperiment.", call. = FALSE)
     }
-    if (class(file) != "character") {
+    if (!is(file, "character")) {
         stop("`file` must be a single character string.", call. = FALSE)
     }
 

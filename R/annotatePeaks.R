@@ -13,7 +13,7 @@ annotatePeaks <- function(ranges, genome) {
 
     # Subset genome information
     genomeName <- match.arg(genome, choices = genomeInfo$assemblyName)
-    genomeInfo <- genomeInfo[genomeInfo$assemblyName == genomeName, ]
+    genomeInfo <- subset(genomeInfo, assemblyName == genomeName)
 
     # Attach required packages
     pkgNames <- c(genomeInfo$TxDb, genomeInfo$OrgDb)

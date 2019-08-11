@@ -4,7 +4,7 @@ Version: 0.99.0
 Authors@R: person("James", "Ashmore", email = "jma1991@icloud.com", role = c("aut", "cre"))
 BugReports: https://github.com/jma1991/Daim/issues
 Description: A Bioconductor package for analysis of DamID-seq data.
-Depends: R (>= 3.5.0)
+Depends: R (>= 3.6)
 License: MIT + file LICENSE
 LazyData: TRUE
 Imports:
@@ -35,8 +35,7 @@ Imports:
     stats,
     SummarizedExperiment,
     IHW
-Remotes: github::stephaniehicks/qsmooth
-biocViews: 
+biocViews: Sequencing, DamIDSeq, Normalization, PeakDetection, GenomeAssembly
 VignetteBuilder: knitr
 Suggests:
     BiocStyle,
@@ -44,4 +43,3 @@ Suggests:
     rmarkdown
 RoxygenNote: 6.1.1
 Encoding: UTF-8
-StagedInstall: FALSE

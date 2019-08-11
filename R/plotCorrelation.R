@@ -16,7 +16,7 @@ plotCorrelation <- function(object, contrast = NULL) {
     }
 
     # Check argument class
-    if (class(object) != "RangedSummarizedExperiment") {
+    if (!is(object, "RangedSummarizedExperiment")) {
         stop("`object` must be a RangedSummarizedExperiment class.", call. = FALSE)
     }
 
@@ -81,17 +81,18 @@ plotCorrelation.RangedSummarizedExperiment <- function(object, contrast) {
     colourPalette <- grDevices::colorRampPalette(brewerPalette)
 
     # Draw plotting area
-    smoothScatter(x = sideValues1,
-                  y = sideValues2,
-                  colramp = colourPalette,
-                  main = rhoTitle,
-                  nrpoints = 100,
-                  xlab = sampleNames[1],
-                  ylab = sampleNames[2],
-                  xlim = sideLimits1,
-                  ylim = sideLimits2,
-                  xaxt = "n",
-                  yaxt = "n")
+    smoothScatter(
+        x = sideValues1,
+        y = sideValues2,
+        colramp = colourPalette,
+        main = rhoTitle,
+        nrpoints = 100,
+        xlab = sampleNames[1],
+        ylab = sampleNames[2],
+        xlim = sideLimits1,
+        ylim = sideLimits2,
+        xaxt = "n",
+        yaxt = "n")
 
     # Draw guide line
     abline(0, 1, lty = 2, col = "#e41a1c")

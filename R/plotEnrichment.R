@@ -84,10 +84,11 @@ plotEnrichment.RangedSummarizedExperiment <- function(object, group = NULL) {
     abline(0, 1, lty = 2)
 
     # Draw plot legend
-    legend("topleft",
-           legend = levels(groupFactor),
-           col = unique(groupColors),
-           bty = "n",
-           lty = 1)
+    legend(
+        "topleft",
+        legend = levels(groupFactor),
+        col = unique(groupColors),
+        bty = "n",
+        lty = 1)
 
 }

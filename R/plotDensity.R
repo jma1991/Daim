@@ -14,7 +14,7 @@ plotDensity <- function(object, group = NULL) {
     }
 
     # Check argument class
-    if (class(object) != "RangedSummarizedExperiment") {
+    if (!is(object, "RangedSummarizedExperiment")) {
         stop("`object` must be a RangedSummarizedExperiment class.", call. = FALSE)
     }
 
@@ -60,16 +60,17 @@ plotDensity.RangedSummarizedExperiment <- function(object, group = NULL) {
     }
 
     # Draw plotting area
-    plot(NA,
-         type = "n",
-         axes = TRUE,
-         main = "Read density",
-         xlab = "Abundance",
-         ylab = "Density",
-         xlim = sideLimits1,
-         ylim = sideLimits2,
-         xaxt = "n",
-         yaxt = "n")
+    plot(
+        NA,
+        type = "n",
+        axes = TRUE,
+        main = "Read density",
+        xlab = "Abundance",
+        ylab = "Density",
+        xlim = sideLimits1,
+        ylim = sideLimits2,
+        xaxt = "n",
+        yaxt = "n")
 
     # Draw axis ticks
     axis(side = 1, at = sideBreaks1, las = 0)
@@ -79,9 +80,11 @@ plotDensity.RangedSummarizedExperiment <- function(object, group = NULL) {
     mapply(lines, densityList, col = groupColors)
 
     # Draw plot legend
-    legend("topright",
-           legend = levels(groupFactor),
-           col = unique(groupColors),
-           bty = "n",
-           lty = 1)
+    legend(
+        "topright",
+        legend = levels(groupFactor),
+        col = unique(groupColors),
+        bty = "n",
+        lty = 1)
+
 }

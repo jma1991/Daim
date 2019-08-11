@@ -15,7 +15,7 @@ callPeaks <- function(object, alpha = 0.05, lfc = 0) {
     }
 
     # Check argument class
-    if (class(object) != "RangedSummarizedExperiment") {
+    if (!is(object, "RangedSummarizedExperiment")) {
         stop("`object` must be a RangedSummarizedExperiment object.", call. = FALSE)
     }
     if (!is.numeric(alpha)) {
