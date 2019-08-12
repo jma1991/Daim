@@ -48,7 +48,7 @@ plotDensity.RangedSummarizedExperiment <- function(object, group = NULL) {
     sideLimits2 <- range(sideBreaks2)
 
     # Create colour palette
-    colorPalette <- RColorBrewer::brewer.pal(n = 9, name = "Set1")
+    colorPalette <- RColorBrewer::brewer.pal(n = 3, name = "Dark2")
 
     # Define colours by group
     if (is.null(group)) {
