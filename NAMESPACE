@@ -1,3 +1,7 @@
+S3method(digestGenome,BSgenome)
+S3method(digestGenome,DNAStringSet)
+S3method(digestGenome,FaFile)
+
 export(annotatePeaks)
 export(callPeaks)
 export(centerMotif)
@@ -24,6 +28,7 @@ export(searchMotif)
 export(writeAssay)
 export(writeBroad)
 export(writeRatio)
+
 import(Biobase)
 import(BiocGenerics, except = c("boxplot", "image", "plotMA"))
 import(Biostrings)
