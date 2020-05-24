@@ -65,6 +65,7 @@ digestGenome.BSgenome <- function(object) {
         matchViews <- BSgenomeViews(object, matchRanges)
         matchProbs <- letterFrequency(matchViews, letters = "GC", as.prob = TRUE)
         matchProbs <- matchProbs[, "G|C"]
+        matchProbs <- signif(matchProbs, digits = 3)
         matchWidth <- width(matchViews)
 
         # Append profile to list
@@ -127,6 +128,7 @@ digestGenome.DNAStringSet <- function(object) {
         matchViews <- object[matchRanges]
         matchProbs <- letterFrequency(matchViews, letters = "GC", as.prob = TRUE)
         matchProbs <- matchProbs[, "G|C"]
+        matchProbs <- signif(matchProbs, digits = 3)
         matchWidth <- width(matchViews)
 
         # Append profile to list
@@ -201,6 +203,7 @@ digestGenome.FaFile <- function(object) {
         matchViews <- scanFa(fastaFile, matchRanges)
         matchProbs <- letterFrequency(matchViews, letters = "GC", as.prob = TRUE)
         matchProbs <- matchProbs[, "G|C"]
+        matchProbs <- signif(matchProbs, digits = 3)
         matchWidth <- width(matchViews)
 
         # Append profile to list
