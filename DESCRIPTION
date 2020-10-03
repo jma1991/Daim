@@ -33,6 +33,7 @@ Imports:
     rtracklayer,
     S4Vectors,
     stats,
+    statmod,
     SummarizedExperiment,
     IHW
 biocViews: Sequencing, DamIDSeq, Normalization, PeakDetection, GenomeAssembly
